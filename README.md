@@ -40,3 +40,95 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## VACUUM CLEANER AGENT
+## DESIGN STEPS 
+1. Define environment with two dirty squares, randomly placing the agent in one of them.
+2. Implement agent behavior using a table-driven program for actions based on location and square status.
+3. Create classes for Environment (`VacuumEnvironment`) and Agent (`VacuumAgent`).
+4. Instantiate environment and agent, print initial state, and simulate actions until environment is clean.
+5. Test scenarios to ensure correct agent behavior and environment updates.
+
+## PROGRAM
+```
+Developing AI Agent with PEAS Description
+Developed by: MANOJ G
+RegisterNumber: 212222240060
+```
+
+```
+class VacuumEnvironment:
+    """
+    Environment for the vacuum cleaner agent.
+    """
+
+    def __init__(self):
+        self.squares = {"A": "Dirty", "B": "Dirty"}
+        self.agent_location = random.choice(["A", "B"])  # Start the agent at a random location
+
+    def percept(self):
+        """
+        Returns the agent's current location and the status of the square (clean or dirty).
+        """
+        return self.agent_location, self.squares[self.agent_location]
+
+    def execute_action(self, action):
+        """
+        Performs the action specified by the agent.
+        """
+        if action == "Left":
+            self.agent_location = "A"
+        elif action == "Right":
+            self.agent_location = "B"
+        elif action == "Suck":
+            self.squares[self.agent_location] = "Clean"
+
+    def is_done(self):
+        """
+        Checks if the environment is done (all squares are clean).
+        """
+        return all(status == "Clean" for status in self.squares.values())
+
+
+class VacuumAgent:
+    """
+    Vacuum cleaner agent.
+    """
+
+    def __init__(self):
+        self.performance = 0
+
+    def table_driven_program(self, percept):
+        """
+        Table-driven program for the agent.
+        """
+        location, status = percept
+        if status == "Dirty":
+            return "Suck"
+        elif location == "A":
+            return "Right"
+        elif location == "B":
+            return "Left"
+        else:
+            return "NoOp"  # No operation
+
+
+if __name__ == "__main__":
+    environment = VacuumEnvironment()
+    agent = VacuumAgent()
+
+    print("Initial state:")
+    print("Agent Location:", environment.agent_location)
+    print("Square Status:", environment.squares)
+    print("Agent Performance:", agent.performance)
+
+    while not environment.is_done():
+        percept = environment.percept
+```
+
+## OUTPUT
+
+![image](https://github.com/Danielmanoj/19AI405ExpNo1/assets/69635071/d3a5dd66-638f-4094-9827-0cf79d5f0724)
+
+## RESULT
+Thus the Developing AI Agent with PEAS Description was implemented using python programming.
