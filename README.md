@@ -1,5 +1,5 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: MANOJ</h3>
+<h3>Name: MANOJ G</h3>
 <h3>Register Number: 212222240060</h3>
 
 
